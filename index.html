@@ -127,16 +127,23 @@
 
         /* Hero Section */
         .hero {
-            padding: 3rem 3rem;
+            padding: 2rem 3rem;
             max-width: 1400px;
             margin: 0 auto;
+            min-height: calc(100vh - 70px);
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-content {
+            width: 100%;
         }
 
         .hero-top {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 3rem;
-            margin-bottom: 3rem;
+            align-items: stretch;
         }
 
         .hero-left {
@@ -154,7 +161,7 @@
 
         .hero-image {
             width: 100%;
-            aspect-ratio: 3/4;
+            height: 100%;
             overflow: hidden;
         }
 
@@ -518,27 +525,29 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-top">
-            <div class="hero-left">
-                <div class="hero-tagline">
-                    I build content strategies, host conversations on stages, and bring people together
-                </div>
-                
-                <div>
-                    <p class="hero-greeting">Hey there,</p>
-                    <h1 class="hero-name">I'm Klara</h1>
-                    <div class="hero-ctas">
-                        <a href="https://www.linkedin.com/in/klaralosert/" target="_blank" class="btn btn-primary">
-                            Connect with me
-                            <span>→</span>
-                        </a>
-                        <a href="#work" class="btn btn-secondary">See my work</a>
+        <div class="hero-content">
+            <div class="hero-top">
+                <div class="hero-left">
+                    <div class="hero-tagline">
+                        I build content strategies, host conversations on stages, and bring people together
+                    </div>
+                    
+                    <div>
+                        <p class="hero-greeting">Hey there,</p>
+                        <h1 class="hero-name">I'm Klara</h1>
+                        <div class="hero-ctas">
+                            <a href="https://www.linkedin.com/in/klaralosert/" target="_blank" class="btn btn-primary">
+                                Connect with me
+                                <span>→</span>
+                            </a>
+                            <a href="#work" class="btn btn-secondary">See my work</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-            <div class="hero-image">
-                <img src="Klara_Losert.jpg" alt="Klara Losert">
+                
+                <div class="hero-image">
+                    <img src="Klara_Losert.jpg" alt="Klara Losert">
+                </div>
             </div>
         </div>
     </section>
