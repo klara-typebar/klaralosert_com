@@ -140,7 +140,7 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 3rem;
-            align-items: stretch;
+            align-items: end;
         }
 
         .hero-left {
@@ -159,15 +159,17 @@
 
         .hero-image {
             width: 100%;
-            max-height: 600px;
+            aspect-ratio: 3/4;
+            max-height: 550px;
             overflow: hidden;
+            align-self: end;
         }
 
         .hero-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: center top;
+            object-position: center center;
         }
 
         .hero-greeting {
@@ -178,7 +180,7 @@
         }
 
         .hero-name {
-            font-size: 140px;
+            font-size: 120px;
             font-weight: 400;
             line-height: 0.9;
             letter-spacing: -0.04em;
@@ -317,7 +319,7 @@
         }
 
         .stage-heading {
-            font-size: 96px;
+            font-size: 120px;
             font-weight: 400;
             line-height: 1.05;
             letter-spacing: -0.04em;
@@ -362,6 +364,78 @@
             padding: 4rem 3rem 2rem;
         }
 
+        /* Featured In Section */
+        .featured-section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 3rem;
+        }
+
+        .featured-heading {
+            font-size: 80px;
+            font-weight: 400;
+            line-height: 1.05;
+            letter-spacing: -0.04em;
+            margin-bottom: 3rem;
+        }
+
+        .featured-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .featured-item {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid #000;
+            text-decoration: none;
+            color: #000;
+            transition: background-color 0.2s ease;
+        }
+
+        .featured-item:hover {
+            background-color: rgba(0, 0, 0, 0.02);
+        }
+
+        .featured-category {
+            padding: 0.5rem 1.5rem;
+            border: 1px solid #000;
+            border-radius: 50px;
+            font-size: 14px;
+            white-space: nowrap;
+            min-width: 120px;
+            text-align: center;
+        }
+
+        .featured-title {
+            flex: 1;
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 1.4;
+        }
+
+        .featured-arrow {
+            width: 32px;
+            height: 32px;
+            flex-shrink: 0;
+        }
+
+        .featured-arrow img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* Footer */
+        footer {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 3rem 2rem;
+        }
+
         .footer-top {
             display: flex;
             justify-content: space-between;
@@ -370,7 +444,7 @@
         }
 
         .footer-heading {
-            font-size: 96px;
+            font-size: 120px;
             font-weight: 400;
             line-height: 1.05;
             letter-spacing: -0.04em;
@@ -496,6 +570,20 @@
             .footer-bottom {
                 justify-content: flex-start;
             }
+
+            .featured-heading {
+                font-size: 64px;
+            }
+
+            .featured-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            .featured-category {
+                min-width: auto;
+            }
         }
     </style>
 </head>
@@ -532,7 +620,9 @@
             <div class="hero-top">
                 <div class="hero-left">
                     <div class="hero-tagline">
-                        I build content strategies, host conversations on stages, and bring people together
+                        I build content strategies,<br>
+                        host conversations on stages,<br>
+                        and bring people together
                     </div>
                     
                     <div>
@@ -652,6 +742,69 @@
                 <h3>Moderation at Career & Leadership Conference, Femme Palette</h3>
                 <p>2025</p>
             </div>
+        </div>
+    </section>
+
+    <!-- Featured In Section -->
+    <section class="featured-section" id="featured">
+        <h2 class="featured-heading">Featured In</h2>
+
+        <div class="featured-list">
+            <a href="https://www.youtube.com/watch?v=h6PK1sPN31k" target="_blank" class="featured-item">
+                <span class="featured-category">Community</span>
+                <span class="featured-title">Digital Community Leaders Podcast, by Steadfast Collective</span>
+                <div class="featured-arrow">
+                    <img src="arrow-icon.png" alt="External link">
+                </div>
+            </a>
+
+            <a href="https://www.youtube.com/watch?v=IT5-eF8pd_8" target="_blank" class="featured-item">
+                <span class="featured-category">Community</span>
+                <span class="featured-title">The Cross-Functional Power of Community, by Community Unlocked</span>
+                <div class="featured-arrow">
+                    <img src="arrow-icon.png" alt="External link">
+                </div>
+            </a>
+
+            <a href="https://forbes.cz/u-jednoho-stolu-propojili-jsme-jana-bednare-a-dve-ambiciozni-osobnosti-z-vyberu-30-pod-30/" target="_blank" class="featured-item">
+                <span class="featured-category">Business</span>
+                <span class="featured-title">How to Get Your First Investment as a Female Founder?</span>
+                <div class="featured-arrow">
+                    <img src="arrow-icon.png" alt="External link">
+                </div>
+            </a>
+
+            <a href="https://forbes.cz/lists/matadori-x-juniori/klara-losert/" target="_blank" class="featured-item">
+                <span class="featured-category">Business</span>
+                <span class="featured-title">Future Mindset, by Forbes (CZ)</span>
+                <div class="featured-arrow">
+                    <img src="arrow-icon.png" alt="External link">
+                </div>
+            </a>
+
+            <a href="https://www.heroine.cz/zeny-it/7436-zakladatelky-potrebuji-v-prvni-rade-vedet-ze-je-moznost-si-pro-penize-k-investorum-jit-klara-losert-z-talkbase-priblizuje-jak" target="_blank" class="featured-item">
+                <span class="featured-category">Interview</span>
+                <span class="featured-title">About Female Founders, by Heroine (CZ)</span>
+                <div class="featured-arrow">
+                    <img src="arrow-icon.png" alt="External link">
+                </div>
+            </a>
+
+            <a href="https://techcrunch.com/2022/10/20/pillar-of-the-community-how-talkbase-plans-to-power-user-led-growth-for-any-company/" target="_blank" class="featured-item">
+                <span class="featured-category">Interview</span>
+                <span class="featured-title">Founders Table, by Forbes (CZ)</span>
+                <div class="featured-arrow">
+                    <img src="arrow-icon.png" alt="External link">
+                </div>
+            </a>
+
+            <a href="https://www.youtube.com/watch?v=XkEBaXdXHYI" target="_blank" class="featured-item">
+                <span class="featured-category">Entrepreneurship</span>
+                <span class="featured-title">Pillar of the Community, by TechCrunch</span>
+                <div class="featured-arrow">
+                    <img src="arrow-icon.png" alt="External link">
+                </div>
+            </a>
         </div>
     </section>
 
