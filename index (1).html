@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Klara Losert - Content Strategist & Speaker</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #F4F3EF;
+            color: #000;
+        }
+
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            background-color: #F4F3EF;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #000;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #000;
+            font-size: 0.95rem;
+            position: relative;
+            padding-bottom: 2px;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: 0;
+            left: 0;
+            background-color: #000;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 2px;
+            background-color: #000;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(7px, 7px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        .mobile-drawer {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100vh;
+            background-color: #F4F3EF;
+            transition: right 0.3s ease;
+            z-index: 999;
+            padding: 6rem 2rem 2rem;
+        }
+
+        .mobile-drawer.active {
+            right: 0;
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .mobile-nav-links a {
+            text-decoration: none;
+            color: #000;
+            font-size: 1.5rem;
+            display: block;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 2rem 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .hero-content {
+            width: 100%;
+        }
+
+        .hero-top {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: stretch;
+        }
+
+        .hero-left {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .hero-tagline {
+            font-size: 40px;
+            line-height: 1.1;
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            margin-bottom: 2rem;
+        }
+
+        .hero-image {
+            width: 100%;
+            max-height: 600px;
+            overflow: hidden;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+        }
+
+        .hero-greeting {
+            font-size: 32px;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .hero-name {
+            font-size: 140px;
+            font-weight: 400;
+            line-height: 0.9;
+            letter-spacing: -0.04em;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            font-size: 0.95rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background-color: #000;
+            color: #F4F3EF;
+            border: 1px solid #000;
+        }
+
+        .btn-primary:hover {
+            background-color: #333;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: #000;
+            border: 1px solid #000;
+        }
+
+        .btn-secondary:hover {
+            background-color: #000;
+            color: #F4F3EF;
+        }
+
+        /* Building Section */
+        .building-section {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .building-top {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            padding: 4rem 3rem;
+            border-top: 1px solid #000;
+            border-bottom: 1px solid #000;
+        }
+
+        .building-heading {
+            font-size: 3.5rem;
+            font-weight: 400;
+            line-height: 1.1;
+            margin: 0;
+        }
+
+        .building-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            align-self: center;
+            margin: 0;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border-bottom: 1px solid #000;
+        }
+
+        .card {
+            padding: 3rem 2rem;
+            border-right: 1px solid #000;
+        }
+
+        .card:first-child {
+            padding-left: 3rem;
+        }
+
+        .card:last-child {
+            border-right: none;
+            padding-right: 3rem;
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 2rem;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .card-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .card-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #898989;
+            margin-bottom: 1.5rem;
+            height: 50px;
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .card h3 {
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #333;
+        }
+
+        /* Stage Section */
+        .stage-section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 3rem;
+        }
+
+        .stage-heading {
+            font-size: 96px;
+            font-weight: 400;
+            line-height: 1.05;
+            letter-spacing: -0.04em;
+            margin-bottom: 3rem;
+        }
+
+        .stage-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .stage-item-image {
+            width: 100%;
+            aspect-ratio: 16/9;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .stage-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .stage-item h3 {
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 1.67;
+            margin-bottom: 0.25rem;
+        }
+
+        .stage-item p {
+            font-size: 14px;
+            color: #898989;
+        }
+
+        /* Footer */
+        footer {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 3rem 2rem;
+        }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .footer-heading {
+            font-size: 96px;
+            font-weight: 400;
+            line-height: 1.05;
+            letter-spacing: -0.04em;
+            margin: 0;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .social-icons a {
+            display: block;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .social-icons img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .footer-ctas {
+            display: flex;
+            gap: 1rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #000;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .footer-bottom p {
+            margin: 0;
+            color: #898989;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+                z-index: 1001;
+            }
+
+            .hero-top {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero-tagline {
+                font-size: 24px;
+            }
+
+            .hero-greeting {
+                font-size: 24px;
+            }
+
+            .hero-name {
+                font-size: 64px;
+            }
+
+            .building-top {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 2rem 1.5rem;
+            }
+
+            .building-heading {
+                font-size: 2.5rem;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .card {
+                border-right: none;
+                border-bottom: 1px solid #000;
+                padding: 2rem 1.5rem;
+            }
+
+            .card:first-child {
+                padding-left: 1.5rem;
+            }
+
+            .card:last-child {
+                border-bottom: none;
+                padding-right: 1.5rem;
+            }
+
+            .stage-heading {
+                font-size: 64px;
+            }
+
+            .stage-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-heading {
+                font-size: 64px;
+            }
+
+            .footer-top {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 2rem;
+            }
+
+            .footer-bottom {
+                justify-content: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">KLARA LOSERT</div>
+        
+        <ul class="nav-links">
+            <li><a href="#work">my work</a></li>
+            <li><a href="#featured">featured in</a></li>
+            <li><a href="#connect">let's connect</a></li>
+        </ul>
+
+        <button class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- Mobile Drawer -->
+    <div class="mobile-drawer" id="mobileDrawer">
+        <ul class="mobile-nav-links">
+            <li><a href="#work">my work</a></li>
+            <li><a href="#featured">featured in</a></li>
+            <li><a href="#connect">let's connect</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-top">
+                <div class="hero-left">
+                    <div class="hero-tagline">
+                        I build content strategies, host conversations on stages, and bring people together
+                    </div>
+                    
+                    <div>
+                        <p class="hero-greeting">Hey there,</p>
+                        <h1 class="hero-name">I'm Klara</h1>
+                        <div class="hero-ctas">
+                            <a href="https://www.linkedin.com/in/klaralosert/" target="_blank" class="btn btn-primary">
+                                Connect with me
+                                <span>→</span>
+                            </a>
+                            <a href="#work" class="btn btn-secondary">See my work</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-image">
+                    <img src="Klara_Losert.jpg" alt="Klara Losert">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Building Things Section -->
+    <section class="building-section" id="work">
+        <div class="building-top">
+            <h2 class="building-heading">Building things that bring people together</h2>
+            <p class="building-description">
+                I've built communities, software products, and documented the whole journey through content. These days I bring all of that experience together—helping teams build content systems, facilitating conversations on stage, and creating spaces where people connect.
+            </p>
+        </div>
+
+        <div class="cards-grid">
+            <!-- Typebar Card -->
+            <div class="card">
+                <div class="card-icon">
+                    <img src="typebar_icon.png" alt="Typebar">
+                </div>
+                <h3>Typebar</h3>
+                <p>Content marketing studio. Strategy, distribution, and templates for teams building big things, plus a bi-weekly newsletter on content systems.</p>
+            </div>
+
+            <!-- Girlhood Card -->
+            <div class="card">
+                <div class="card-icon">
+                    <img src="girlhood_icon.png" alt="Girlhood">
+                </div>
+                <h3>Girlhood</h3>
+                <p>Building a private network for women building careers they're proud of. If that sound like you, we'd love to have you.</p>
+            </div>
+
+            <!-- Moderation Card -->
+            <div class="card">
+                <p class="card-label">Emcee & Speaker</p>
+                <h3>Moderation</h3>
+                <p>I moderate events, speak on stages, and teach practical skills in public speaking, content creation, and community building.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- On Stage Section -->
+    <section class="stage-section">
+        <h2 class="stage-heading">On stage</h2>
+
+        <div class="stage-grid">
+            <div class="stage-item">
+                <div class="stage-item-image">
+                    <img src="stage-1.png" alt="Hosting Fire-side Chat at Untold Stories Conference">
+                </div>
+                <h3>Hosting Fire-side Chat at Untold Stories Conference, Budapest</h3>
+                <p>2022</p>
+            </div>
+
+            <div class="stage-item">
+                <div class="stage-item-image">
+                    <img src="stage-2.png" alt="Hosting & Organizing Community Rebellion Conference">
+                </div>
+                <h3>Hosting & Organizing Community Rebellion Conference by Talkbase</h3>
+                <p>2023</p>
+            </div>
+
+            <div class="stage-item">
+                <div class="stage-item-image">
+                    <img src="stage-3.png" alt="Panel Moderation at Career & Leadership Conference">
+                </div>
+                <h3>Panel Moderation at Career & Leadership Conference by Femme Palette</h3>
+                <p>2024</p>
+            </div>
+
+            <div class="stage-item">
+                <div class="stage-item-image">
+                    <img src="stage-4.png" alt="Guest speaker at Founder Community by Hubspot">
+                </div>
+                <h3>Guest speaker at Founder Community by Hubspot</h3>
+                <p>2024</p>
+            </div>
+
+            <div class="stage-item">
+                <div class="stage-item-image">
+                    <img src="stage-5.jpg" alt="Lecturer at Grow Your Brand Online">
+                </div>
+                <h3>Lecturer at Grow Your Brand Online – Content That Connects With Customers by Femme Palette</h3>
+                <p>2025</p>
+            </div>
+
+            <div class="stage-item">
+                <div class="stage-item-image">
+                    <img src="stage-6.jpg" alt="Guest speaker at Women in Tech">
+                </div>
+                <h3>Guest speaker at Women in Tech: The Gender Algorithm, by ČVUT and The French Embassy Prague</h3>
+                <p>2023</p>
+            </div>
+
+            <div class="stage-item">
+                <div class="stage-item-image">
+                    <img src="stage-7.jpg" alt="Moderation at Career & Leadership Conference">
+                </div>
+                <h3>Moderation at Career & Leadership Conference, Femme Palette</h3>
+                <p>2025</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="connect">
+        <div class="footer-top">
+            <h2 class="footer-heading">Let's connect</h2>
+            
+            <div class="social-icons">
+                <a href="https://www.linkedin.com/in/klaralosert/" target="_blank" rel="noopener noreferrer">
+                    <img src="icon-linkedin.png" alt="LinkedIn">
+                </a>
+                <a href="https://www.instagram.com/klaralosert/" target="_blank" rel="noopener noreferrer">
+                    <img src="icon-instagram.png" alt="Instagram">
+                </a>
+                <a href="https://substack.com/@wantitall" target="_blank" rel="noopener noreferrer">
+                    <img src="icon-substack.png" alt="Substack">
+                </a>
+            </div>
+        </div>
+
+        <div class="footer-ctas">
+            <a href="https://calendar.app.google/ogTHg5PiFWTQZPXM7" target="_blank" class="btn btn-primary">
+                Schedule a Call
+                <span>→</span>
+            </a>
+            <a href="mailto:klara@typebar.studio" class="btn btn-secondary">
+                Send Me an Email
+            </a>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026. Designed by ANY LABS</p>
+        </div>
+    </footer>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const mobileDrawer = document.getElementById('mobileDrawer');
+        const mobileLinks = document.querySelectorAll('.mobile-nav-links a');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileDrawer.classList.toggle('active');
+            document.body.style.overflow = mobileDrawer.classList.contains('active') ? 'hidden' : 'auto';
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                mobileDrawer.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+        });
+    </script>
+</body>
+</html>
